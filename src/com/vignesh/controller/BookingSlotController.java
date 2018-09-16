@@ -1,4 +1,4 @@
-package com.cts.controller;
+package com.vignesh.controller;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.cts.dao.BookingSlotDAO;
-import com.cts.vo.BookingSlotVO;
+import com.vignesh.dao.BookingSlotDAO;
+import com.vignesh.vo.BookingSlotVO;
 
 @Controller
 public class BookingSlotController {

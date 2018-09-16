@@ -1,11 +1,11 @@
-package com.cts.dao;
+package com.vignesh.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import org.springframework.jdbc.core.RowMapper;
 
-import com.cts.model.BookingSlot;
+import com.vignesh.model.BookingSlot;
 
 public class BookingSlotRowMapper implements RowMapper<BookingSlot>{
 	
