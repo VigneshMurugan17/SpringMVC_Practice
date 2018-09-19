@@ -1,20 +1,28 @@
 package com.vignesh.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.Locale;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.vignesh.validator.BookingValidator;
 import com.vignesh.dao.BookingSlotDAO;
 import com.vignesh.vo.BookingSlotVO;
 
@@ -26,12 +34,17 @@ public class BookingSlotController {
 	
 	@Autowired
 	BookingSlotDAO bookingSlotDAO;
+	
+	@Autowired
+	private BookingValidator validator;
 
 	public static Integer id = null;
 	public static String message = null;
 	
 	@RequestMapping(value = "/book", method =  RequestMethod.GET)
-	public String showBookingPage(Locale locale, ModelMap model){		
+	public String showBookingPage(HttpServletRequest request, ModelMap model){
+		HttpSession session = request.getSession();
+		session.setMaxInactiveInterval(20);
 		model.addAttribute(bookingSlotVO);		
 		return "booking";
 	}
@@ -89,6 +102,13 @@ public class BookingSlotController {
 		
 		return slotList;
 	}
+	
+	@InitBinder
+	public void initBinder(WebDataBinder binder) {
+	    SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MMM-yyyy");
+        binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true)); 
+            binder.setValidator(validator);
+         }
 	
 	@RequestMapping(value = "/confirm", method = RequestMethod.POST)
 	public String confirmBookingDetails(
