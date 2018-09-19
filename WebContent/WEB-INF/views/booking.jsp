@@ -2,6 +2,7 @@
     pageEncoding="ISO-8859-1"%>
     <%@ taglib uri="http://www.springframework.org/tags/form"
 	prefix="springForm"%>
+	<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -21,9 +22,11 @@
 			<h2>CA Enablement Assessments</h2>
 			<hr>
 			<h3>Book a Slot</h3>
+			<hr>
+			Language : <a href="?locale=en">English</a> <a href="?locale=fr">French</a>
 			<table>
 				<tr>
-					<td>Employee Id:</td>
+					<td><Strong><spring:message code="label.Id"/></Strong></td>
 					<td><springForm:input path="employeeId" class="form-text" /></td>
 					<td><springForm:errors path="employeeId" cssClass="error" /></td>
 				</tr>

@@ -1,6 +1,7 @@
 package com.vignesh.controller;
 
 import java.util.LinkedHashMap;
+import java.util.Locale;
 import java.util.Map;
 
 import javax.validation.Valid;
@@ -30,7 +31,7 @@ public class BookingSlotController {
 	public static String message = null;
 	
 	@RequestMapping(value = "/book", method =  RequestMethod.GET)
-	public String showBookingPage(ModelMap model){		
+	public String showBookingPage(Locale locale, ModelMap model){		
 		model.addAttribute(bookingSlotVO);		
 		return "booking";
 	}
